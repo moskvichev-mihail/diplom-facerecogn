@@ -19,23 +19,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9997f434-84f6-415d-a2ad-c4c88170bb9d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/diplom-facerecogn.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/pasha-yakushev.jpg" afterDir="false" />
+    <list default="true" id="9997f434-84f6-415d-a2ad-c4c88170bb9d" name="Default Changelist" comment="Добавил виртуальное окружение, flask, начал писать роуты">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diplom.py" beforeDir="false" afterPath="$PROJECT_DIR$/diplom.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/yahya-original.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/yahya-islamov.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager" show_ignored="true" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -57,7 +51,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.test">
     <configuration name="diplom" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="diplom-facerecogn" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -70,7 +64,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/diplom.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/saved_images/diplom.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="diplom-facerecogn" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -81,7 +96,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.diplom" />
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.diplom1" />
       </list>
     </recent_temporary>
   </component>
@@ -96,6 +112,14 @@
       <option name="presentableId" value="Default" />
       <updated>1587071831734</updated>
     </task>
+    <task id="LOCAL-00001" summary="Добавил виртуальное окружение, flask, начал писать роуты">
+      <created>1587318032473</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1587318032473</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -110,34 +134,46 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Добавил виртуальное окружение, flask, начал писать роуты" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил виртуальное окружение, flask, начал писать роуты" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="788" y="414" width="400" height="277" key="#Scopes" timestamp="1587317819688">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="788" y="414" width="400" height="277" key="#Scopes/67.27.1853.1053@67.27.1853.1053" timestamp="1587317819688" />
     <state x="799" y="315" width="424" height="484" key="FileChooserDialogImpl" timestamp="1587072264626">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="799" y="315" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1587072264626" />
-    <state width="1830" height="278" key="GridCell.Tab.0.bottom" timestamp="1587231834262">
+    <state width="1830" height="278" key="GridCell.Tab.0.bottom" timestamp="1587488391731">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1587231834262" />
-    <state width="1830" height="278" key="GridCell.Tab.0.center" timestamp="1587231834261">
+    <state width="1830" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1587488391731" />
+    <state width="1830" height="278" key="GridCell.Tab.0.center" timestamp="1587488391730">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1587231834261" />
-    <state width="1830" height="278" key="GridCell.Tab.0.left" timestamp="1587231834261">
+    <state width="1830" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1587488391730" />
+    <state width="1830" height="278" key="GridCell.Tab.0.left" timestamp="1587488391730">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1587231834261" />
-    <state width="1830" height="278" key="GridCell.Tab.0.right" timestamp="1587231834261">
+    <state width="1830" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1587488391730" />
+    <state width="1830" height="278" key="GridCell.Tab.0.right" timestamp="1587488391730">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1587231834261" />
+    <state width="1830" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1587488391730" />
     <state x="510" y="171" key="SettingsEditor" timestamp="1587317732679">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="510" y="171" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1587317732679" />
-    <state x="737" y="269" width="502" height="566" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1587317370402">
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1587319003026">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="737" y="269" width="502" height="566" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1587317370402" />
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1587319003026" />
+    <state x="737" y="269" width="502" height="566" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1587317769363">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="737" y="269" width="502" height="566" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1587317769363" />
   </component>
 </project>
