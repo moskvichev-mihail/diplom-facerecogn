@@ -1,9 +1,13 @@
 import face_recognition
 import numpy as np
-import pymysql.cursors
+import pymysql
 import os
 import requests
-from flask import Flask, request, make_response
+from flask import Flask, request, make_response, send_from_directory
+
+# Для запуска виртуального окружения зайти в папку с проектом и написать source flask-env/bin/activate
+# python app.py для запуска исполняемого файла
+# deactivate для выключения виртуальной среды
 
 app = Flask(__name__)
 
@@ -43,19 +47,26 @@ def send_photo_on_user_id(user_id):
                     if len(result) != 0:
                         cursor.execute(sql_get_path, user_id)
                         for row in cursor:
+                            name_photo = row["path"]
                             path_to_image = os.path.join(app.config['UPLOAD_FOLDER'], row["path"])
+                        # connection.close()
                         if os.path.exists(path_to_image):
+                            # return send_from_directory(app.config['UPLOAD_FOLDER'], name_photo)
                             image = {"image": open(path_to_image, "rb")}
                             post_request = requests.post('http://localhost:5000/api/v1/savePhotoOnServer/user/6', files=image)
                             return post_request.text
                         else:
-                            return make_response("Фото пользователя отсутствует на сервере", 400)
+                            result = {'status_code': 400, 'description': 'Фото пользователя отсутствует на сервере'}
+                            return make_response(result, 400)
                     else:
-                        return make_response("Для введённого user_id нет записи с фотографией в БД", 400)
+                        result = {'status_code': 400, 'description': 'Для user_id нет записи с фотографией в БД'}
+                        return make_response(result, 400)
                 else:
-                    return make_response("Введённый user_id отсутствует в БД", 400)
+                    result = {'status_code': 400, 'description': 'Введённый user_id отсутствует в БД'}
+                    return make_response(result, 400)
     else:
-        return make_response("Разрешённый метод для данного запроса: GET", 400)
+        result = {'status_code': 400, 'description': 'Разрешённый метод для данного запроса: GET'}
+        return make_response(result, 400)
 
 @app.route('/api/v1/savePhotoOnServer/user/<int:user_id>', methods=['GET', 'POST'])
 def save_photo_on_server(user_id):
@@ -65,22 +76,27 @@ def save_photo_on_server(user_id):
                 cursor.execute(sql_get_user, user_id)
                 result = cursor.fetchall()
                 if len(result) == 0:
-                    return make_response("Введённый user_id отсутствует в БД", 400)
+                    result = {'status_code': 400, 'description': 'Введённый user_id отсутствует в БД'}
+                    return make_response(result, 400)
                 else:
                     image = request.files.get('image')
                     path_to_image = os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
                     if os.path.exists(path_to_image):
-                        return make_response("Ошибка, фотография уже существует на сервере", 400)
+                        result = {'status_code': 400, 'description': 'Ошибка, фотография уже существует на сервере'}
+                        return make_response(result, 400)
                     else:
                         if image and allowed_file(image.filename):
                             cursor.execute(sql_insert_path_photo, (user_id, image.filename))
                             image.save(path_to_image)
                             if os.path.exists(path_to_image):
-                                return make_response("Фотография успешно сохранена", 200)
+                                result = {'status_code': 200, 'description': 'Фотография успешно сохранена'}
+                                return make_response(result, 200)
                             else:
-                                return make_response("Ошибка, фотография не сохранена", 400)
+                                result = {'status_code': 400, 'description': 'Ошибка, фотография не сохранена'}
+                                return make_response(result, 400)
     else:
-        return make_response("Разрешённый метод для данного запроса: POST", 400)
+        result = {'status_code': 400, 'description': 'Разрешённый метод для данного запроса: POST'}
+        return make_response(result, 400)
 
 @app.route('/api/v1/findFaceOnPhoto', methods=['GET', 'POST'])
 def find_face_on_photo():
@@ -99,13 +115,14 @@ def find_face_on_photo():
                     image = face_recognition.load_image_file(image_path)
                     image_face_encoding = face_recognition.face_encodings(image)[0]
                     known_face_encodings_images.append(image_face_encoding)
-
+        # connection.close()
         image = request.files.get('image')
         path_to_image = os.path.join(app.config['UPLOAD_FOLDER_FOR_FIND_FACE'], image.filename)
         if image and allowed_file(image.filename):
             image.save(path_to_image)
         if not os.path.exists(path_to_image):
-            return make_response("Ошибка, фотография не сохранена", 400)
+            result = {'status_code': 400, 'description': 'Ошибка, фотография не сохранена'}
+            return make_response(result, 400)
         unknown_image = face_recognition.load_image_file(path_to_image)
         os.remove(path_to_image)
 
@@ -121,11 +138,13 @@ def find_face_on_photo():
                 user_id = known_faces_user_id[best_match_index]
             str_user_id = str(user_id)
 
-        result = {'user_id': str_user_id}
+        result = {'user_id': str_user_id, 'status_code': 200}
 
-        return result
+        return make_response(result, 200)
     else:
-        return make_response("Разрешённый метод для данного запроса: POST", 400)
+        result = {'status_code': 400, 'description': 'Разрешённый метод для данного запроса: POST'}
+        return make_response(result, 400)
 
 if __name__ == '__main__':
     app.run(debug=True)
+    # app.run(host='0.0.0.0', port=5000)
