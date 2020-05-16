@@ -2,41 +2,43 @@ import face_recognition
 import numpy as np
 import pymysql
 import os
-import requests
-from flask import Flask, request, make_response, send_from_directory
+import base64
+from app import app
+from flask import request, make_response, render_template
 
-# Для запуска виртуального окружения зайти в папку с проектом и написать source flask-env/bin/activate
-# python app.py для запуска исполняемого файла
-# deactivate для выключения виртуальной среды
-
-app = Flask(__name__)
-
-connection = pymysql.connect(host='petrodim.beget.tech',
-                                 user='petrodim_test_db',
-                                 password='M2&pWHkR',
-                                 db='petrodim_test_db',
-                                 charset='utf8mb4',
-                                 cursorclass=pymysql.cursors.DictCursor)
-
-UPLOAD_FOLDER = "images"
-UPLOAD_FOLDER_FOR_FIND_FACE = "saved_images"
+UPLOAD_FOLDER = "app/static/images"
+UPLOAD_FOLDER_FOR_FIND_FACE = "app/static/saved_images"
 ALLOWED_EXTENSIONS = (['png', 'jpg', 'jpeg'])
+
+sql_get_all_users_photo = "SELECT user_id, path FROM path_to_photo_of_user"
 sql_get_user = "SELECT user_id FROM user WHERE user_id=%s"
 sql_get_path = "SELECT path FROM path_to_photo_of_user  WHERE user_id=%s"
+sql_get_photo_id = "SELECT path_to_photo_of_user_id FROM path_to_photo_of_user  WHERE user_id=%s"
 sql_insert_path_photo = "INSERT INTO path_to_photo_of_user (path_to_photo_of_user_id, user_id, path) VALUES (NULL, %s, %s)"
+sql_delete_path_photo = "DELETE FROM `path_to_photo_of_user` WHERE `path_to_photo_of_user`.`path_to_photo_of_user_id` = %s"
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['UPLOAD_FOLDER_FOR_FIND_FACE'] = UPLOAD_FOLDER_FOR_FIND_FACE
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
+def connect_to_db(host, user, password, db):
+    connection = pymysql.connect(host=host, user=user, password=password, db=db, charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
+    return connection
+
 @app.route('/')
 def index():
-    return "Hello, world!"
+    return render_template("index.html")
+
+@app.route('/docs')
+def docs():
+    return render_template("docs.html", title="Документация")
 
 @app.route('/api/v1/getPhoto/user/<int:user_id>', methods=['GET', 'POST'])
 def send_photo_on_user_id(user_id):
     if request.method == 'GET':
+        connection = connect_to_db('petrodim.beget.tech', 'petrodim_test_db', 'M2&pWHkR', 'petrodim_test_db')
         with connection:
             with connection.cursor() as cursor:
                 cursor.execute(sql_get_user, user_id)
@@ -49,12 +51,16 @@ def send_photo_on_user_id(user_id):
                         for row in cursor:
                             name_photo = row["path"]
                             path_to_image = os.path.join(app.config['UPLOAD_FOLDER'], row["path"])
-                        # connection.close()
+                        #connection.close()
                         if os.path.exists(path_to_image):
                             # return send_from_directory(app.config['UPLOAD_FOLDER'], name_photo)
-                            image = {"image": open(path_to_image, "rb")}
-                            post_request = requests.post('http://localhost:5000/api/v1/savePhotoOnServer/user/6', files=image)
-                            return post_request.text
+                            image = open(path_to_image, "rb")
+                            image_read = image.read()
+                            image_encode = base64.b64encode(image_read)
+                            result = {'status_code': 200, 'image': str(image_encode)}
+                            return make_response(result, 200)
+                            #post_request = requests.post('http://localhost:5000/api/v1/savePhotoOnServer/user/6', files=image)
+                            #return post_request.text
                         else:
                             result = {'status_code': 400, 'description': 'Фото пользователя отсутствует на сервере'}
                             return make_response(result, 400)
@@ -68,9 +74,10 @@ def send_photo_on_user_id(user_id):
         result = {'status_code': 400, 'description': 'Разрешённый метод для данного запроса: GET'}
         return make_response(result, 400)
 
-@app.route('/api/v1/savePhotoOnServer/user/<int:user_id>', methods=['GET', 'POST'])
+@app.route('/api/v1/addPhoto/user/<int:user_id>', methods=['GET', 'POST'])
 def save_photo_on_server(user_id):
     if request.method == 'POST':
+        connection = connect_to_db('petrodim.beget.tech', 'petrodim_test_db', 'M2&pWHkR', 'petrodim_test_db')
         with connection:
             with connection.cursor() as cursor:
                 cursor.execute(sql_get_user, user_id)
@@ -98,13 +105,44 @@ def save_photo_on_server(user_id):
         result = {'status_code': 400, 'description': 'Разрешённый метод для данного запроса: POST'}
         return make_response(result, 400)
 
-@app.route('/api/v1/findFaceOnPhoto', methods=['GET', 'POST'])
-def find_face_on_photo():
-    if request.method == 'POST':
+@app.route('/api/v1/deletePhoto/user/<int:user_id>', methods=['GET', 'DELETE'])
+def delete_photo_from_server(user_id):
+    if request.method == 'DELETE':
+        connection = connect_to_db('petrodim.beget.tech', 'petrodim_test_db', 'M2&pWHkR', 'petrodim_test_db')
         with connection:
             with connection.cursor() as cursor:
-                sql = "SELECT user_id, path FROM path_to_photo_of_user"
-                cursor.execute(sql)
+                cursor.execute(sql_get_user, user_id)
+                result = cursor.fetchall()
+                if len(result) == 0:
+                    result = {'status_code': 400, 'description': 'Введённый user_id отсутствует в БД'}
+                    return make_response(result, 400)
+                else:
+                    cursor.execute(sql_get_path, user_id)
+                    for row in cursor:
+                        path_to_image = os.path.join(app.config['UPLOAD_FOLDER'], row["path"])
+                    if not os.path.exists(path_to_image):
+                        result = {'status_code': 400, 'description': 'Ошибка, фотография отсутствует на сервере'}
+                        return make_response(result, 400)
+                    else:
+                        cursor.execute(sql_get_photo_id, user_id)
+                        for row in cursor:
+                            path_id = row["path_to_photo_of_user_id"]
+                        os.remove(path_to_image)
+                        cursor.execute(sql_delete_path_photo, path_id)
+                        #connection.close()
+                        result = {'status_code': 200, 'description': 'Фотография успешно удалена'}
+                        return make_response(result, 200)
+    else:
+        result = {'status_code': 400, 'description': 'Разрешённый метод для данного запроса: DELETE'}
+        return make_response(result, 400)
+
+@app.route('/api/v1/findFaceOnPhoto', methods=['GET', 'POST'])
+def find_face_on_photo():
+    if request.method == 'GET':
+        connection = connect_to_db('petrodim.beget.tech', 'petrodim_test_db', 'M2&pWHkR', 'petrodim_test_db')
+        with connection:
+            with connection.cursor() as cursor:
+                cursor.execute(sql_get_all_users_photo)
                 known_faces_user_id = []
                 known_faces_images_path = []
                 known_face_encodings_images = []
@@ -115,7 +153,7 @@ def find_face_on_photo():
                     image = face_recognition.load_image_file(image_path)
                     image_face_encoding = face_recognition.face_encodings(image)[0]
                     known_face_encodings_images.append(image_face_encoding)
-        # connection.close()
+        #connection.close()
         image = request.files.get('image')
         path_to_image = os.path.join(app.config['UPLOAD_FOLDER_FOR_FIND_FACE'], image.filename)
         if image and allowed_file(image.filename):
@@ -138,13 +176,9 @@ def find_face_on_photo():
                 user_id = known_faces_user_id[best_match_index]
             str_user_id = str(user_id)
 
-        result = {'user_id': str_user_id, 'status_code': 200}
+        result = {'status_code': 200, 'user_id': str_user_id}
 
         return make_response(result, 200)
     else:
-        result = {'status_code': 400, 'description': 'Разрешённый метод для данного запроса: POST'}
+        result = {'status_code': 400, 'description': 'Разрешённый метод для данного запроса: GET'}
         return make_response(result, 400)
-
-if __name__ == '__main__':
-    app.run(debug=True)
-    # app.run(host='0.0.0.0', port=5000)
