@@ -101,8 +101,45 @@ def save_photo_on_server(user_id):
                             else:
                                 result = {'status_code': 400, 'description': 'Ошибка, фотография не сохранена'}
                                 return make_response(result, 400)
+                        else:
+                            result = {'status_code': 400, 'description': 'Ошибка, разрешенный формат для фотографий: jpg, png, jpeg'}
+                            return make_response(result, 400)
     else:
         result = {'status_code': 400, 'description': 'Разрешённый метод для данного запроса: POST'}
+        return make_response(result, 400)
+
+@app.route('/api/v1/updatePhoto/user/<int:user_id>', methods=['GET', 'PUT'])
+def update_photo(user_id):
+    if request.method == 'PUT':
+        connection = connect_to_db('petrodim.beget.tech', 'petrodim_test_db', 'M2&pWHkR', 'petrodim_test_db')
+        with connection:
+            with connection.cursor() as cursor:
+                cursor.execute(sql_get_user, user_id)
+                result = cursor.fetchall()
+                if len(result) == 0:
+                    result = {'status_code': 400, 'description': 'Введённый user_id отсутствует в БД'}
+                    return make_response(result, 400)
+                else:
+                    image = request.files.get('image')
+                    path_to_image = os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
+                    cursor.execute(sql_get_path, user_id)
+                    result = cursor.fetchall()
+                    if len(result) != 0:
+                        cursor.execute(sql_get_path, user_id)
+                        for row in cursor:
+                            sql_path_to_image = os.path.join(app.config['UPLOAD_FOLDER'], row["path"])
+                        if os.path.exists(sql_path_to_image):
+                            os.remove(sql_path_to_image)
+                            image.save(path_to_image)
+                            # update запрос к БД
+                        else:
+                            result = {'status_code': 400, 'description': 'Старое фото пользователя отсутствует на сервере'}
+                            return make_response(result, 400)
+                    else:
+                        result = {'status_code': 400, 'description': 'Для user_id нет записи с фотографией в БД'}
+                        return make_response(result, 400)
+    else:
+        result = {'status_code': 400, 'description': 'Разрешённый метод для данного запроса: PUT'}
         return make_response(result, 400)
 
 @app.route('/api/v1/deletePhoto/user/<int:user_id>', methods=['GET', 'DELETE'])
