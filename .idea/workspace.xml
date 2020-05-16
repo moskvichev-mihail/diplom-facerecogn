@@ -32,8 +32,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -148,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589657695045</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add updatePhoto route">
+      <created>1589659234518</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1589659234518</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -167,7 +174,8 @@
     <MESSAGE value="Добавил виртуальное окружение, flask, начал писать роуты" />
     <MESSAGE value="update" />
     <MESSAGE value="reformating" />
-    <option name="LAST_COMMIT_MESSAGE" value="reformating" />
+    <MESSAGE value="add updatePhoto route" />
+    <option name="LAST_COMMIT_MESSAGE" value="add updatePhoto route" />
   </component>
   <component name="WindowStateProjectService">
     <state x="788" y="414" width="400" height="277" key="#Scopes" timestamp="1587317819688">
@@ -202,10 +210,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="510" y="171" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1587317732679" />
-    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1589657702505">
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1589659242316">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1589657702505" />
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1589659242316" />
     <state x="737" y="269" width="502" height="566" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1587317769363">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
