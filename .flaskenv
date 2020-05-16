@@ -1,0 +1,1 @@
+FLASK_APP=facerecognition_api.py

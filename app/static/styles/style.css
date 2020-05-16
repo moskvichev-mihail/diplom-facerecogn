@@ -1,0 +1,105 @@
+.container {
+    max-width: 1420px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.flex-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.flex-elem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.title {
+    margin-bottom: 10px;
+}
+
+.route-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.route-cont.get {
+    border-color: #61affe;
+    background: rgba(97,175,254,.1);
+}
+
+.route-cont.post {
+    border-color: #49cc90;
+    background: rgba(73,204,144,.1);
+}
+
+.route-cont.delete {
+    background: rgba(249,62,62,.1);
+    border-color: #f93e3e;
+}
+
+.route-cont.put {
+    border-color: #fca130;
+    background: rgba(252,161,48,.1);
+}
+
+.route-cont .head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.method {
+    font-size: 14px;
+    font-weight: 700;
+    min-width: 80px;
+    padding: 6px 15px;
+    text-align: center;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.method.post {
+    background: #49cc90;
+}
+
+.method.put {
+    background: #fca130;
+}
+
+.method.delete {
+    background: #f93e3e;
+}
+
+.method.get {
+    background: #61affe;
+}
+
+.path {
+    padding: 0 10px;
+}
+
+.route-cont .description {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0;
+}
+
+.route-cont .description .input {
+    margin-right: 60px;
+}
+
+.section-title {
+    font-size: 24px;
+    color: #3b4151;
+    margin-bottom: 30px;
+}

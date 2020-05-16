@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="section-title">Доступные роуты:</div>
+</div>
+<div class="container flex-cont">
+    <div class="flex-elem">
+        <div class="title">Добавить фотографию участника</div>
+        <div class="route-cont post">
+            <div class="head">
+                <div class="method post">post</div>
+                <div class="path">/api/v1/addPhoto/user/{user_id}</div>
+            </div>
+            <div class="description">
+                <div class="input">
+                    <div class="title">Запрос:</div>
+                    <div>GET-параметр: user_id</div>
+                    <div>Form-data:<br>
+                        key: image<br>
+                        value: image.jpg
+                    </div>
+                </div>
+                <div class="output">
+                    <div class="title">Ответ:</div>
+                    <div>json в формате {'status_code': Возвращаемый код, 'description': 'Описание'}</div>
+                    <div>Возвращаемые коды: 200 - Успешно, 400 - Ошибка</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-elem">
+        <div class="title">Обновить фотографию участника</div>
+        <div class="route-cont put">
+            <div class="head">
+                <div class="method put">put</div>
+                <div class="path">/api/v1/updatePhoto/user/{user_id}</div>
+            </div>
+            <div class="description">
+                <div class="input">
+                    <div class="title">Запрос:</div>
+                    <div>GET-параметр: user_id</div>
+                    <div>Form-data:<br>
+                        key: image<br>
+                        value: image.jpg
+                    </div>
+                </div>
+                <div class="output">
+                    <div class="title">Ответ:</div>
+                    <div>json в формате {'status_code': Возвращаемый код, 'description': 'Описание'}</div>
+                    <div>Возвращаемые коды: 200 - Успешно, 400 - Ошибка</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-elem">
+        <div class="title">Удалить фотографию участника</div>
+        <div class="route-cont delete">
+            <div class="head">
+                <div class="method delete">delete</div>
+                <div class="path">/api/v1/deletePhoto/user/{user_id}</div>
+            </div>
+            <div class="description">
+                <div class="input">
+                    <div class="title">Запрос:</div>
+                    <div>GET-параметр: user_id</div>
+                </div>
+                <div class="output">
+                    <div class="title">Ответ:</div>
+                    <div>json в формате {'status_code': Возвращаемый код, 'description': 'Описание'}</div>
+                    <div>Возвращаемые коды: 200 - Успешно, 400 - Ошибка</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-elem">
+        <div class="title">Получить фотографию участника</div>
+        <div class="route-cont get">
+            <div class="head">
+                <div class="method get">get</div>
+                <div class="path">/api/v1/getPhoto/user/{user_id}</div>
+            </div>
+            <div class="description">
+                <div class="input">
+                    <div class="title">Запрос:</div>
+                    <div>GET-параметр: user_id</div>
+                </div>
+                <div class="output">
+                    <div class="title">Ответ:</div>
+                    <div>json в формате {'status_code': 400, 'description': 'Описание ошибки'}</div>
+                    <div>{'status_code': 200, 'image': 'Фотография в формате строки base64'}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-elem">
+        <div class="title">Распознать участника на предоставленной фотографии</div>
+        <div class="route-cont get">
+            <div class="head">
+                <div class="method get">get</div>
+                <div class="path">/api/v1/findFaceOnPhoto</div>
+            </div>
+            <div class="description">
+                <div class="input">
+                    <div class="title">Запрос:</div>
+                    <div>GET-параметр: user_id</div>
+                    <div>Form-data:<br>
+                        key: image<br>
+                        value: image.jpg
+                    </div>
+                </div>
+                <div class="output">
+                    <div class="title">Ответ:</div>
+                    <div>json в формате {'status_code': 400, 'description': 'Описание ошибки'}</div>
+                    <div>{'status_code': 200, 'user_id': 'Id пользователя'}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

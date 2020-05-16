@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{title}} - Backend API для распознавания участников соревнования</title>
+    {% else %}
+    <title>Backend API для распознавания участников соревнования</title>
+    {% endif %}
+    <link rel="stylesheet" href="../static/styles/style.css">
+</head>
+<body>
+{% block content %}{% endblock %}
+</body>
+</html>

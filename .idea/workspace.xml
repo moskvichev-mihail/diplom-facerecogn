@@ -22,6 +22,12 @@
     <list default="true" id="9997f434-84f6-415d-a2ad-c4c88170bb9d" name="Default Changelist" comment="Добавил виртуальное окружение, flask, начал писать роуты">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/biden.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/obama.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/pasha-yakushev.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/two_people.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/yahya-find.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/yahya-islamov.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +39,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -46,6 +53,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../face-recognition-diplom" />
@@ -118,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587318032473</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="update">
+      <created>1587655660261</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1587655660261</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -135,13 +150,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Добавил виртуальное окружение, flask, начал писать роуты" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил виртуальное окружение, flask, начал писать роуты" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="WindowStateProjectService">
     <state x="788" y="414" width="400" height="277" key="#Scopes" timestamp="1587317819688">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="788" y="414" width="400" height="277" key="#Scopes/67.27.1853.1053@67.27.1853.1053" timestamp="1587317819688" />
+    <state x="692" y="354" width="592" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1589644732518">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="692" y="354" width="592" height="396" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1589644732518" />
     <state x="799" y="315" width="424" height="484" key="FileChooserDialogImpl" timestamp="1587654083698">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -166,10 +186,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="510" y="171" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1587317732679" />
-    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1587319003026">
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1587655666687">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1587319003026" />
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1587655666687" />
     <state x="737" y="269" width="502" height="566" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1587317769363">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
