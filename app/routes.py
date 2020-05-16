@@ -8,10 +8,6 @@ from app import constants
 from flask import request, make_response, render_template
 
 
-app.config['UPLOAD_FOLDER'] = constants.UPLOAD_FOLDER
-app.config['UPLOAD_FOLDER_FOR_FIND_FACE'] = constants.UPLOAD_FOLDER_FOR_FIND_FACE
-
-
 @app.route('/')
 def index():
     return render_template("index.html")

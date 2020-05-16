@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9997f434-84f6-415d-a2ad-c4c88170bb9d" name="Default Changelist" comment="Добавил виртуальное окружение, flask, начал писать роуты">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -155,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589659234518</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="reformat functions and constants">
+      <created>1589661648905</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1589661648905</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -175,7 +183,8 @@
     <MESSAGE value="update" />
     <MESSAGE value="reformating" />
     <MESSAGE value="add updatePhoto route" />
-    <option name="LAST_COMMIT_MESSAGE" value="add updatePhoto route" />
+    <MESSAGE value="reformat functions and constants" />
+    <option name="LAST_COMMIT_MESSAGE" value="reformat functions and constants" />
   </component>
   <component name="WindowStateProjectService">
     <state x="788" y="414" width="400" height="277" key="#Scopes" timestamp="1587317819688">
@@ -210,10 +219,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="510" y="171" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1587317732679" />
-    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1589659242316">
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1589661657557">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1589659242316" />
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1589661657557" />
     <state x="737" y="269" width="502" height="566" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1587317769363">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
