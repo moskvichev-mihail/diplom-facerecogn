@@ -70,7 +70,11 @@ def save_photo_on_server(user_id):
                     result = {'status_code': 400, 'description': constants.not_exist_user_in_db_error_description}
                     return make_response(result, 400)
                 else:
-                    image = request.files.get('image')
+                    if (request.files.get('image')):
+                        image = request.files.get('image')
+                    else:
+                        result = {'status_code': 400, 'description': constants.not_sending_photo_in_route}
+                        return make_response(result, 400)
                     path_to_image = os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
                     if os.path.exists(path_to_image):
                         result = {'status_code': 400, 'description': constants.exist_photo_error_description}
@@ -105,7 +109,11 @@ def update_photo(user_id):
                     result = {'status_code': 400, 'description': constants.not_exist_user_in_db_error_description}
                     return make_response(result, 400)
                 else:
-                    image = request.files.get('image')
+                    if (request.files.get('image')):
+                        image = request.files.get('image')
+                    else:
+                        result = {'status_code': 400, 'description': constants.not_sending_photo_in_route}
+                        return make_response(result, 400)
                     if image and functions.allowed_file(image.filename):
                         path_to_image = os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
                         cursor.execute(constants.sql_get_path, user_id)
@@ -199,6 +207,7 @@ def find_face_on_photo():
         face_locations = face_recognition.face_locations(unknown_image)
         face_encodings = face_recognition.face_encodings(unknown_image, face_locations)
 
+        str_user_id = "Unknown"
         for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodings):
             matches = face_recognition.compare_faces(known_face_encodings_images, face_encoding)
             user_id = "Unknown"
@@ -209,7 +218,6 @@ def find_face_on_photo():
             str_user_id = str(user_id)
 
         result = {'status_code': 200, 'user_id': str_user_id}
-
         return make_response(result, 200)
     else:
         result = {'status_code': 400, 'description': constants.allow_get_method_error_description}
