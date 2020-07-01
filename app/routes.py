@@ -182,7 +182,11 @@ def find_face_on_photo():
                     image_face_encoding = face_recognition.face_encodings(image)[0]
                     known_face_encodings_images.append(image_face_encoding)
         # connection.close()
-        image = request.files.get('image')
+        if (request.files.get('image')):
+            image = request.files.get('image')
+        else:
+            result = {'status_code': 400, 'description': constants.not_sending_photo_in_route}
+            return make_response(result, 400)
         path_to_image = os.path.join(app.config['UPLOAD_FOLDER_FOR_FIND_FACE'], image.filename)
         if image and functions.allowed_file(image.filename):
             image.save(path_to_image)

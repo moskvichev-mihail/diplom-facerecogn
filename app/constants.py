@@ -22,6 +22,7 @@ exist_photo_error_description = "Ошибка, фотография уже су�
 not_save_photo_error_description = "Ошибка, фотография не сохранена"
 success_delete_photo_description = "Фотография успешно удалена"
 success_save_photo_description = "Фотография успешно сохранена"
+not_sending_photo_in_route = "В запросе отсутствует фотография"
 allow_format_img_error_description = "Ошибка, разрешенный формат для фотографий: jpg, png, jpeg"
 allow_get_method_error_description = "Разрешённый метод для данного запроса: GET"
 allow_post_method_error_description = "Разрешённый метод для данного запроса: POST"
