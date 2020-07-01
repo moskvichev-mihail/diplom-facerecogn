@@ -70,28 +70,34 @@ def save_photo_on_server(user_id):
                     result = {'status_code': 400, 'description': constants.not_exist_user_in_db_error_description}
                     return make_response(result, 400)
                 else:
-                    if (request.files.get('image')):
-                        image = request.files.get('image')
-                    else:
-                        result = {'status_code': 400, 'description': constants.not_sending_photo_in_route}
-                        return make_response(result, 400)
-                    path_to_image = os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
-                    if os.path.exists(path_to_image):
+                    cursor.execute(constants.sql_check_exist_photo, user_id)
+                    result = cursor.fetchall()
+                    if len(result) != 0:
                         result = {'status_code': 400, 'description': constants.exist_photo_error_description}
                         return make_response(result, 400)
                     else:
-                        if image and functions.allowed_file(image.filename):
-                            cursor.execute(constants.sql_insert_path_photo, (user_id, image.filename))
-                            image.save(path_to_image)
-                            if os.path.exists(path_to_image):
-                                result = {'status_code': 200, 'description': constants.success_save_photo_description}
-                                return make_response(result, 200)
-                            else:
-                                result = {'status_code': 400, 'description': constants.not_save_photo_error_description}
-                                return make_response(result, 400)
+                        if (request.files.get('image')):
+                            image = request.files.get('image')
                         else:
-                            result = {'status_code': 400, 'description': constants.allow_format_img_error_description}
+                            result = {'status_code': 400, 'description': constants.not_sending_photo_in_route}
                             return make_response(result, 400)
+                        path_to_image = os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
+                        if os.path.exists(path_to_image):
+                            result = {'status_code': 400, 'description': constants.exist_photo_error_description}
+                            return make_response(result, 400)
+                        else:
+                            if image and functions.allowed_file(image.filename):
+                                cursor.execute(constants.sql_insert_path_photo, (user_id, image.filename))
+                                image.save(path_to_image)
+                                if os.path.exists(path_to_image):
+                                    result = {'status_code': 200, 'description': constants.success_save_photo_description}
+                                    return make_response(result, 200)
+                                else:
+                                    result = {'status_code': 400, 'description': constants.not_save_photo_error_description}
+                                    return make_response(result, 400)
+                            else:
+                                result = {'status_code': 400, 'description': constants.allow_format_img_error_description}
+                                return make_response(result, 400)
     else:
         result = {'status_code': 400, 'description': constants.allow_post_method_error_description}
         return make_response(result, 400)

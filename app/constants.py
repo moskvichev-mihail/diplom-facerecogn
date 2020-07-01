@@ -5,6 +5,7 @@ ALLOWED_EXTENSIONS = (['png', 'jpg', 'jpeg'])
 sql_get_all_users_photo = "SELECT user_id, path FROM path_to_photo_of_user"
 sql_get_user = "SELECT user_id FROM user WHERE user_id=%s"
 sql_get_path = "SELECT path FROM path_to_photo_of_user  WHERE user_id=%s"
+sql_check_exist_photo = "SELECT * FROM path_to_photo_of_user  WHERE user_id=%s"
 sql_get_photo_id = "SELECT path_to_photo_of_user_id FROM path_to_photo_of_user  WHERE user_id=%s"
 sql_insert_path_photo = "INSERT INTO path_to_photo_of_user (path_to_photo_of_user_id, user_id, path) VALUES (NULL, %s, %s)"
 sql_delete_path_photo = "DELETE FROM `path_to_photo_of_user` WHERE `path_to_photo_of_user`.`path_to_photo_of_user_id` = %s"
